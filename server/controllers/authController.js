@@ -98,7 +98,48 @@ const loginUser = async (req, res) => {
   }
 };
 
+// Get Users
+const getUsers = async (req, res) => {
+  try {
+
+    const users = await User.find()
+      .select("-password");
+
+    res.status(200).json(users);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+// Delete User
+const deleteUser = async (
+  req,
+  res
+) => {
+  try {
+
+    await User.findByIdAndDelete(
+      req.params.id
+    );
+
+    res.status(200).json({
+      message: "User deleted",
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  getUsers,
+  deleteUser,
 };

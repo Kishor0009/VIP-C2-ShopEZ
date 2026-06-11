@@ -46,10 +46,27 @@ const AdminDashboard = () => {
 
             </div>
 
-        <div className="col-md-4">
-          <div className="card p-4 text-center">
-            <h4>Users</h4>
-          </div>
+       <div className="col-md-4">
+
+          <Link
+            to="/admin/users"
+            style={{
+              textDecoration:
+              "none"
+            }}
+          >
+
+            <div
+              className=
+              "card p-4 text-center"
+            >
+              <h4>
+                Users
+              </h4>
+            </div>
+
+          </Link>
+
         </div>
 
       </div>

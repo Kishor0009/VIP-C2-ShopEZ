@@ -1,53 +1,57 @@
-import React,
-{
+import React, {
   useEffect,
   useState
-}
-from "react";
+} from "react";
 
-import axios
-from "axios";
-
-import { toast }
-from "react-toastify";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const AdminOrders = () => {
 
-  const [orders,
-    setOrders] =
-    useState([]);
+  const [orders, setOrders] = useState([]);
 
-  const fetchOrders =
-    async () => {
+  const fetchOrders = async () => {
 
-    const response =
-      await axios.get(
-        "http://localhost:5000/api/orders"
-      );
-
-    setOrders(
-      response.data
+    const userInfo = JSON.parse(
+      localStorage.getItem("userInfo")
     );
+
+    const response = await axios.get(
+      "http://localhost:5000/api/orders",
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+    );
+
+    setOrders(response.data);
   };
 
   useEffect(() => {
     fetchOrders();
   }, []);
 
-  const updateStatus =
-    async (
-      id,
-      status
-    ) => {
+  const updateStatus = async (
+    id,
+    status
+  ) => {
+
+    const userInfo = JSON.parse(
+      localStorage.getItem("userInfo")
+    );
 
     await axios.put(
       `http://localhost:5000/api/orders/${id}`,
-      { status }
+      { status },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
     );
 
-    toast.success(
-      "Updated"
-    );
+    toast.success("Updated");
 
     fetchOrders();
   };
@@ -55,76 +59,41 @@ const AdminOrders = () => {
   return (
     <div className="container mt-4">
 
-      <h2>
-        Manage Orders
-      </h2>
+      <h2>Manage Orders</h2>
 
-      {orders.map(
-        (order) => (
+      {orders.map((order) => (
 
         <div
           key={order._id}
-          className=
-          "card p-3 mb-3"
+          className="card p-3 mb-3"
         >
 
-          <h5>
-            {
-              order.name
-            }
-          </h5>
+          <h5>{order.name}</h5>
+
+          <p>{order.email}</p>
+
+          <p>{order.address}</p>
 
           <p>
-            {
-              order.email
-            }
-          </p>
-
-          <p>
-            {
-              order.address
-            }
-          </p>
-
-          <p>
-            Status:
-            {" "}
+            Status:{" "}
             <strong>
-              {
-                order.status
-              }
+              {order.status}
             </strong>
           </p>
 
           <select
-            className=
-            "form-select mb-2"
-            defaultValue=
-            {
-              order.status
-            }
-            onChange={
-              (e) =>
+            className="form-select mb-2"
+            defaultValue={order.status}
+            onChange={(e) =>
               updateStatus(
                 order._id,
-                e.target
-                 .value
+                e.target.value
               )
             }
           >
-
-            <option>
-              Placed
-            </option>
-
-            <option>
-              Shipped
-            </option>
-
-            <option>
-              Delivered
-            </option>
-
+            <option>Placed</option>
+            <option>Shipped</option>
+            <option>Delivered</option>
           </select>
 
         </div>
