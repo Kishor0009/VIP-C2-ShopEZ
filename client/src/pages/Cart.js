@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import {
   getCartItems,
@@ -81,6 +82,16 @@ const Cart = () => {
               </button>
 
             </div>
+            <div className="text-end mt-4">
+
+  <Link
+    to="/checkout"
+    className="btn btn-success"
+  >
+    Proceed To Checkout
+  </Link>
+
+</div>
 
           </div>
 

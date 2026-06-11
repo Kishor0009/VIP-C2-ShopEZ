@@ -44,6 +44,12 @@ const NavbarComponent = () => {
               Cart
             </Link>
 
+            <Link to="/my-orders"
+              className="btn btn-info me-2"
+            >
+             My Orders
+           </Link>
+
 
             <button
               className="btn btn-danger"
