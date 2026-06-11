@@ -37,6 +37,14 @@ const NavbarComponent = () => {
               Hello, {userInfo.name}
             </span>
 
+            <Link
+              to="/cart"
+                 className="btn btn-warning me-2"
+            >
+              Cart
+            </Link>
+
+
             <button
               className="btn btn-danger"
               onClick={logoutHandler}

@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 
 import NavbarComponent from "./components/NavbarComponent";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 
 import { ToastContainer } from "react-toastify";
 
@@ -34,8 +35,9 @@ function App() {
 
         <Route path="/register" element={<Register />} />
        
-        <Route path="/product/:id" element={<ProductDetails />}
-/>
+        <Route path="/product/:id" element={<ProductDetails />}/>
+
+        <Route path="/cart" element={<Cart />} />
 
       </Routes>
 

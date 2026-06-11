@@ -12,9 +12,14 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
 
-    price: {
-      type: Number,
+    mainImg: {
+      type: String,
       required: true,
+    },
+
+    carousel: {
+      type: [String],
+      default: [],
     },
 
     category: {
@@ -22,9 +27,24 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
 
-    image: {
+    gender: {
       type: String,
+      default: "Unisex",
+    },
+
+    sizes: {
+      type: [String],
+      default: [],
+    },
+
+    price: {
+      type: Number,
       required: true,
+    },
+
+    discount: {
+      type: Number,
+      default: 0,
     },
 
     stock: {

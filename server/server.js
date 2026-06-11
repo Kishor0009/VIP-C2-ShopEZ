@@ -1,28 +1,30 @@
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
+  const express = require("express");
+  const cors = require("cors");
+  require("dotenv").config();
 
-const connectDB = require("./config/db");
+  const connectDB = require("./config/db");
 
-const authRoutes = require("./routes/authRoutes");
-const productRoutes = require("./routes/productRoutes");
+  const authRoutes = require("./routes/authRoutes");
+  const productRoutes = require("./routes/productRoutes");
+  const cartRoutes = require("./routes/cartRoutes");
 
-const app = express();
+  const app = express();
 
-connectDB();
+  connectDB();
 
-app.use(cors());
-app.use(express.json());
+  app.use(cors());
+  app.use(express.json());
+  app.use("/api/cart", cartRoutes);
 
-app.use("/api/auth", authRoutes);
-app.use("/api/products", productRoutes);
+  app.use("/api/auth", authRoutes);
+  app.use("/api/products", productRoutes);
 
-app.get("/", (req, res) => {
-  res.send("ShopEZ API Running");
-});
+  app.get("/", (req, res) => {
+    res.send("ShopEZ API Running");
+  });
 
-const PORT = process.env.PORT || 5000;
+  const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });

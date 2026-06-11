@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
     >
       <div className="card h-100 shadow-sm">
         <img
-          src={product.image}
+          src={product.mainImg}
           className="card-img-top"
           alt={product.title}
           style={{ height: "220px", objectFit: "cover" }}
