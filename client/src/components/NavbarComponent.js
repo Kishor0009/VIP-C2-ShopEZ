@@ -37,6 +37,15 @@ const NavbarComponent = () => {
               Hello, {userInfo.name}
             </span>
 
+            {userInfo.role === "admin" && (
+              <Link
+               to="/admin"
+               className="btn btn-dark me-2"
+              >
+                Admin
+              </Link>
+           )}  
+
             <Link
               to="/cart"
                  className="btn btn-warning me-2"

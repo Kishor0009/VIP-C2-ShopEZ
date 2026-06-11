@@ -50,8 +50,33 @@ const getUserOrders = async (req, res) => {
   }
 };
 
+// Update Order Status
+const updateOrderStatus = async (req, res) => {
+  try {
+
+    const order = await Order.findByIdAndUpdate(
+      req.params.id,
+      {
+        status: req.body.status,
+      },
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json(order);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   createOrder,
   getOrders,
   getUserOrders,
+  updateOrderStatus,
 };

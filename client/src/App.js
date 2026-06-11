@@ -15,6 +15,10 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import MyOrders from "./pages/MyOrders";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminProducts from "./pages/AdminProducts";
+import AddProduct from "./pages/AddProduct";
+import AdminOrders from "./pages/AdminOrders";
 
 import { ToastContainer } from "react-toastify";
 
@@ -38,6 +42,10 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/my-orders" element={<MyOrders />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/products" element={<AdminProducts />} />
+        <Route path="/admin/add-product" element={<AddProduct />} />
+        <Route path="/admin/orders" element={<AdminOrders />} />
 
       </Routes>
 
