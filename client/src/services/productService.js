@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAuthConfig }from "../utils/authConfig";
 
 const API_URL = "http://localhost:5000/api/products";
 
@@ -23,11 +24,14 @@ export const getProducts = async () => {
   return response.data;
 };
 
-export const deleteProduct = async (id) => {
-  const response = await axios.delete(
-    `${API_URL}/${id}`,
-    getConfig()
-  );
+export const deleteProduct =
+  async (id) => {
+
+  const response =
+    await axios.delete(
+      `${API_URL}/${id}`,
+      getAuthConfig()
+    );
 
   return response.data;
 };

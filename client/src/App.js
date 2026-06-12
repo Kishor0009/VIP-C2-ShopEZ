@@ -22,34 +22,55 @@ import AdminOrders from "./pages/AdminOrders";
 import AdminUsers from "./pages/AdminUsers";
 
 import { ToastContainer } from "react-toastify";
+import { useState } from "react";
 
 
 function App() {
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
 
     <BrowserRouter>
 
-      <NavbarComponent />
+      <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
 
-      <ToastContainer />
+        <NavbarComponent 
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
 
-      <Routes>
+        <ToastContainer />
 
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />    
-        <Route path="/product/:id" element={<ProductDetails />}/>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/my-orders" element={<MyOrders />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/products" element={<AdminProducts />} />
-        <Route path="/admin/add-product" element={<AddProduct />} />
-        <Route path="/admin/orders" element={<AdminOrders />} />
-        <Route path="/admin/users" element={<AdminUsers />} />
+        <div className="flex-grow-1">
+          <Routes>
 
-      </Routes>
+            <Route path="/" element={ <Home searchTerm={searchTerm} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />    
+            <Route path="/product/:id" element={<ProductDetails />}/>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/my-orders" element={<MyOrders />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/products" element={<AdminProducts />} />
+            <Route path="/admin/add-product" element={<AddProduct />} />
+            <Route path="/admin/orders" element={<AdminOrders />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+
+          </Routes>
+        </div>
+
+        <footer className="page-footer text-center">
+          <div className="container">
+            <p className="mb-1">
+              <strong>ShopEZ</strong> — Shop Smarter, Faster and Easier
+            </p>
+            <small>&copy; {new Date().getFullYear()} ShopEZ. All rights reserved.</small>
+          </div>
+        </footer>
+
+      </div>
 
     </BrowserRouter>
   );

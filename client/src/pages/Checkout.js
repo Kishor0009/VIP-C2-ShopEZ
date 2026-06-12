@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -27,7 +26,6 @@ const Checkout = () => {
     e.preventDefault();
 
     try {
-
       const userInfo = JSON.parse(
         localStorage.getItem("userInfo")
       );
@@ -41,80 +39,115 @@ const Checkout = () => {
       );
 
       toast.success("Order Placed Successfully");
-
       navigate("/");
-
     } catch (error) {
-
       toast.error("Failed to place order");
     }
   };
 
   return (
-    <div
-      className="container mt-5"
-      style={{ maxWidth: "600px" }}
-    >
-      <h2 className="mb-4">
-        Checkout
-      </h2>
+    <div className="container mt-5 mb-5" style={{ maxWidth: "650px" }}>
+      <div className="card form-card p-4 p-md-5">
+        <h2 className="mb-4" style={{ fontWeight: "700" }}>
+          Checkout
+        </h2>
 
-      <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label fw-semibold">Full Name</label>
+            <input
+              className="form-control"
+              placeholder="Enter your full name"
+              name="name"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <input
-          className="form-control mb-3"
-          placeholder="Name"
-          name="name"
-          onChange={handleChange}
-        />
+          <div className="mb-3">
+            <label className="form-label fw-semibold">Mobile Number</label>
+            <input
+              className="form-control"
+              placeholder="Enter your mobile number"
+              name="mobile"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <input
-          className="form-control mb-3"
-          placeholder="Mobile"
-          name="mobile"
-          onChange={handleChange}
-        />
+          <div className="mb-3">
+            <label className="form-label fw-semibold">Email Address</label>
+            <input
+              className="form-control"
+              placeholder="Enter your email"
+              name="email"
+              type="email"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <input
-          className="form-control mb-3"
-          placeholder="Email"
-          name="email"
-          onChange={handleChange}
-        />
+          <div className="mb-3">
+            <label className="form-label fw-semibold">Delivery Address</label>
+            <textarea
+              className="form-control"
+              placeholder="Enter your full address"
+              name="address"
+              rows="3"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <textarea
-          className="form-control mb-3"
-          placeholder="Address"
-          name="address"
-          onChange={handleChange}
-        />
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Pincode</label>
+            <input
+              className="form-control"
+              placeholder="Enter pincode"
+              name="pincode"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <input
-          className="form-control mb-3"
-          placeholder="Pincode"
-          name="pincode"
-          onChange={handleChange}
-        />
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Payment Method</label>
+            <div className="d-flex gap-3 mt-2">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="paymentMethod"
+                  id="cod"
+                  value="COD"
+                  defaultChecked
+                  onChange={handleChange}
+                />
+                <label className="form-check-label" htmlFor="cod">
+                  Cash On Delivery
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="paymentMethod"
+                  id="upi"
+                  value="UPI"
+                  onChange={handleChange}
+                />
+                <label className="form-check-label" htmlFor="upi">
+                  UPI
+                </label>
+              </div>
+            </div>
+          </div>
 
-        <select
-          className="form-control mb-3"
-          name="paymentMethod"
-          onChange={handleChange}
-        >
-          <option value="COD">
-            Cash On Delivery
-          </option>
-
-          <option value="UPI">
-            UPI
-          </option>
-        </select>
-
-        <button className="btn btn-success w-100">
-          Place Order
-        </button>
-
-      </form>
+          <button className="btn btn-success w-100 py-2" style={{ fontWeight: "600" }}>
+            Place Order
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

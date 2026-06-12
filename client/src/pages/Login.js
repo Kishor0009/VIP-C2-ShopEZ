@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
 
   const handleChange = (e) => {
     setFormData({
@@ -20,68 +18,76 @@ const Login = () => {
     });
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-
       const response = await axios.post(
         "http://localhost:5000/api/auth/login",
         formData
       );
 
-      // Save token
       localStorage.setItem(
         "userInfo",
         JSON.stringify(response.data)
       );
 
       toast.success("Login Successful");
-
       navigate("/");
-
     } catch (error) {
-
       toast.error(
         error.response?.data?.message || "Login Failed"
       );
     }
   };
 
-
-
   return (
-    <div className="container mt-5" style={{ maxWidth: "500px" }}>
+    <div className="container mt-5 mb-5" style={{ maxWidth: "450px" }}>
+      <div className="card form-card p-4 p-md-5">
+        <div className="text-center mb-4">
+          <i className="bi bi-lock-fill" style={{ fontSize: "2.5rem", color: "#4361ee" }}></i>
+          <h2 className="mt-2" style={{ fontWeight: "700" }}>Login</h2>
+          <p className="text-muted">Welcome back to ShopEZ</p>
+        </div>
 
-      <h2 className="mb-4 text-center">
-        Login
-      </h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label fw-semibold">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              className="form-control"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-      <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              className="form-control"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter Email"
-          className="form-control mb-3"
-          onChange={handleChange}
-        />
+          <button className="btn btn-primary-custom w-100 py-2" style={{ fontSize: "1rem" }}>
+            <i className="bi bi-box-arrow-in-right me-2"></i>
+            Login
+          </button>
+        </form>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-          className="form-control mb-3"
-          onChange={handleChange}
-        />
-
-        <button className="btn btn-dark w-100">
-          Login
-        </button>
-
-      </form>
+        <p className="text-center mt-4 mb-0 text-muted">
+          Don't have an account?{" "}
+          <Link to="/register" style={{ color: "#4361ee", fontWeight: "500" }}>
+            Register
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
