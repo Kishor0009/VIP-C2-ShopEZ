@@ -34,7 +34,7 @@ const NavbarComponent = ({ searchTerm, setSearchTerm }) => {
       <div className="container">
         <Link className="navbar-brand d-flex flex-column align-items-start" to="/" style={{ lineHeight: "1.1" }}>
           <span style={{ fontWeight: "700", fontSize: "1.4rem",color: "#ff9f1c" }}>ShopEZ</span>
-          <span style={{ fontSize: "0.75rem", opacity: 0.8, fontWeight: "500", textTransform: "uppercase" }}>Hardware Hub</span>
+          <span style={{ fontSize: "0.75rem", opacity: 0.8, fontWeight: "500", textTransform: "uppercase",marginLeft: "49px", }}>Hardware Hub</span>
         </Link>
 
         <button
