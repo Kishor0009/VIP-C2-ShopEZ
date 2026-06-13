@@ -15,11 +15,10 @@ const {
 } = require(
   "../middleware/authMiddleware"
 );
-
-router.get("/", protect, admin, getProducts);
+router.get("/", getProducts);
+router.get("/:id", getProductById);
 
 router.post("/", protect, admin, createProduct);
-router.get("/:id", protect, admin, getProductById);
 router.delete("/:id", protect, admin, deleteProduct);
 
 module.exports = router;
