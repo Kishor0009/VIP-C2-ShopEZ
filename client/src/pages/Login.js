@@ -45,7 +45,6 @@ const Login = () => {
     <div className="container mt-5 mb-5" style={{ maxWidth: "450px" }}>
       <div className="card form-card p-5">
         <div className="text-center mb-4">
-          <i className="bi bi-lock-fill" style={{ fontSize: "2.5rem", color: "#4361ee" }}></i>
           <h2 className="mt-2" style={{ fontWeight: "700" }}>Login</h2>
           <p className="text-muted">Welcome back to ShopEZ</p>
         </div>
@@ -76,7 +75,6 @@ const Login = () => {
           </div>
 
           <button className="btn btn-primary-custom w-100 py-2" style={{ fontSize: "1rem" }}>
-            <i className="bi bi-box-arrow-in-right me-2"></i>
             Login
           </button>
         </form>

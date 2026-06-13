@@ -9,6 +9,7 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    role: "user",
   });
 
   const handleChange = (e) => {
@@ -40,7 +41,6 @@ const Register = () => {
     <div className="container mt-5 mb-5" style={{ maxWidth: "450px" }}>
       <div className="card form-card p-5">
         <div className="text-center mb-4">
-          <i className="bi bi-person-plus-fill" style={{ fontSize: "2.5rem", color: "#4361ee" }}></i>
           <h2 className="mt-2" style={{ fontWeight: "700" }}>Register</h2>
           <p className="text-muted">Create your ShopEZ account</p>
         </div>
@@ -82,8 +82,20 @@ const Register = () => {
             />
           </div>
 
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Register As</label>
+            <select
+              name="role"
+              className="form-select"
+              value={formData.role}
+              onChange={handleChange}
+            >
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
           <button className="btn btn-primary-custom w-100 py-2" style={{ fontSize: "1rem" }}>
-            <i className="bi bi-person-plus me-2"></i>
             Register
           </button>
         </form>

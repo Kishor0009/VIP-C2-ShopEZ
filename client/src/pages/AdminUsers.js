@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -6,38 +6,83 @@ import { getAuthConfig } from "../utils/authConfig";
 
 const AdminUsers = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    if (!userInfo || userInfo.role !== "admin") {
-      toast.error("Access denied. Admin role required.");
-      navigate("/login");
-    }
-  }, [navigate]);
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const fetchUsers = async () => {
-    const response = await axios.get(
-      "https://shopez-backend-7mm7.onrender.com/api/auth/users",
-      getAuthConfig()
-    );
+  const handleAuthError = useCallback((error) => {
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      localStorage.removeItem("userInfo");
+      toast.error(error.response?.data?.message || "Please login again.");
+      navigate("/login");
+      return true;
+    }
 
-    setUsers(response.data);
-  };
+    return false;
+  }, [navigate]);
+
+  const fetchUsers = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        "https://shopez-backend-7mm7.onrender.com/api/auth/users",
+        getAuthConfig()
+      );
+
+      setUsers(response.data);
+    } catch (error) {
+      console.error(error);
+
+      if (!handleAuthError(error)) {
+        toast.error(
+          error.response?.data?.message ||
+          "Failed to load users"
+        );
+      }
+    }
+  }, [handleAuthError]);
 
   useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (!userInfo || userInfo.role !== "admin") {
+      toast.error("Access denied. Admin role required.");
+      navigate("/login");
+      return;
+    }
+
     fetchUsers();
-  }, []);
+  }, [fetchUsers, navigate]);
 
   const deleteUser = async (id) => {
-    await axios.delete(
-      `https://shopez-backend-7mm7.onrender.com/api/auth/users/${id}`,
-      getAuthConfig()
-    );
+    try {
+      await axios.delete(
+        `https://shopez-backend-7mm7.onrender.com/api/auth/users/${id}`,
+        getAuthConfig()
+      );
 
-    toast.success("User deleted");
-    fetchUsers();
+      setUsers((currentUsers) =>
+        currentUsers.filter((user) => user._id !== id)
+      );
+
+      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+      if (userInfo?._id === id) {
+        localStorage.removeItem("userInfo");
+        toast.error("Your account has been removed. Please login again.");
+        navigate("/login");
+        return;
+      }
+
+      toast.success("User deleted");
+    } catch (error) {
+      console.error(error);
+
+      if (!handleAuthError(error)) {
+        toast.error(
+          error.response?.data?.message ||
+          "Failed to delete user"
+        );
+      }
+    }
   };
 
   const filteredUsers = users.filter((user) =>
