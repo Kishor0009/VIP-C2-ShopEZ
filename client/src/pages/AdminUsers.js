@@ -39,13 +39,11 @@ const AdminUsers = () => {
   return (
     <div className="container mt-4 mb-5">
       <h2 className="section-title">
-        <i className="bi bi-people me-2"></i>
         Manage Users
       </h2>
 
       {users.length === 0 ? (
         <div className="empty-state">
-          <i className="bi bi-person-x" style={{ fontSize: "3rem" }}></i>
           <p className="mt-3">No users found.</p>
         </div>
       ) : (
@@ -53,9 +51,6 @@ const AdminUsers = () => {
           <div className="row mb-3">
             <div className="col-md-6 col-lg-4">
               <div className="input-group">
-                <span className="input-group-text bg-white border-end-0">
-                  <i className="bi bi-search text-muted"></i>
-                </span>
                 <input
                   type="text"
                   className="form-control border-start-0"
@@ -69,7 +64,6 @@ const AdminUsers = () => {
 
           {filteredUsers.length === 0 ? (
             <div className="empty-state">
-              <i className="bi bi-search" style={{ fontSize: "3rem" }}></i>
               <p className="mt-3">No users match your search.</p>
             </div>
           ) : (
@@ -105,7 +99,6 @@ const AdminUsers = () => {
                             className="btn btn-outline-danger btn-sm"
                             onClick={() => deleteUser(user._id)}
                           >
-                            <i className="bi bi-trash me-1"></i>
                             Delete
                           </button>
                         </td>

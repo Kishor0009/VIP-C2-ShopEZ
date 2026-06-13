@@ -8,7 +8,17 @@ const FooterComponent = () => {
         <div className="row g-4">
           {/* Brand & Tagline */}
           <div className="col-md-4 text-center text-md-start">
-            <h5 style={{ fontWeight: "700", color: "#ff9f1c" }}>ShopEZ Hardware Hub</h5>
+            <h5
+              style={{fontWeight: "800",color: "#ff9f1c",}}
+              >
+                ShopEZ{" "}
+              <span
+                style={{fontWeight: "300", fontSize: "0.75rem", color: "#94A3B8",}}
+                >
+                 Hardware Hub
+               </span>
+            </h5>
+
             <p className="mb-0 text-light" style={{ fontSize: "0.9rem", opacity: 0.85 }}>
               Your One-Stop Shop for Tools & Hardware
             </p>
