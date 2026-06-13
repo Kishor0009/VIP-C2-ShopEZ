@@ -19,6 +19,8 @@ const AdminOrders = () => {
       localStorage.getItem("userInfo")
     );
 
+    if (!userInfo) return;
+
     const response = await axios.get(
       "https://shopez-backend-7mm7.onrender.com/api/orders",
       {
@@ -39,6 +41,8 @@ const AdminOrders = () => {
     const userInfo = JSON.parse(
       localStorage.getItem("userInfo")
     );
+
+    if (!userInfo) return;
 
     await axios.put(
       `https://shopez-backend-7mm7.onrender.com/api/orders/${id}`,

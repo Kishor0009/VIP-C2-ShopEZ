@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { addToCart } from "../services/cartService";
-import { getAuthConfig } from "../utils/authConfig";
 
 const ProductDetails = () => {
   const { id } = useParams();

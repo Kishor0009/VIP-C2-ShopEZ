@@ -31,6 +31,11 @@ const Checkout = () => {
         localStorage.getItem("userInfo")
       );
 
+      if (!userInfo) {
+        toast.error("Please login first to place an order");
+        return;
+      }
+
       await axios.post(
         "https://shopez-backend-7mm7.onrender.com/api/orders",
         {
