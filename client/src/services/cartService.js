@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/cart";
+const API_URL = "https://shopez-backend-7mm7.onrender.com/api/cart";
 
 export const addToCart = async (cartData) => {
   const response = await axios.post(API_URL, cartData);

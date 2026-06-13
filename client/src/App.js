@@ -22,6 +22,7 @@ import AdminOrders from "./pages/AdminOrders";
 import AdminUsers from "./pages/AdminUsers";
 
 import { ToastContainer } from "react-toastify";
+import FooterComponent from "./components/FooterComponent";
 import { useState } from "react";
 
 
@@ -61,14 +62,7 @@ function App() {
           </Routes>
         </div>
 
-        <footer className="page-footer text-center">
-          <div className="container">
-            <p className="mb-1">
-              <strong>ShopEZ</strong> — Shop Smarter, Faster and Easier
-            </p>
-            <small>&copy; {new Date().getFullYear()} ShopEZ. All rights reserved.</small>
-          </div>
-        </footer>
+        <FooterComponent />
 
       </div>
 

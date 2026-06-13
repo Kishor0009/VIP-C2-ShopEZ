@@ -20,7 +20,7 @@ const AdminOrders = () => {
     );
 
     const response = await axios.get(
-      "http://localhost:5000/api/orders",
+      "https://shopez-backend-7mm7.onrender.com/api/orders",
       {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
@@ -41,7 +41,7 @@ const AdminOrders = () => {
     );
 
     await axios.put(
-      `http://localhost:5000/api/orders/${id}`,
+      `https://shopez-backend-7mm7.onrender.com/api/orders/${id}`,
       { status },
       {
         headers: {
@@ -71,7 +71,6 @@ const AdminOrders = () => {
 
       {orders.length === 0 ? (
         <div className="empty-state">
-          <i className="bi bi-inbox" style={{ fontSize: "3rem" }}></i>
           <p className="mt-3">No orders found.</p>
         </div>
       ) : (
@@ -92,7 +91,6 @@ const AdminOrders = () => {
 
           {filteredOrders.length === 0 ? (
             <div className="empty-state">
-              <i className="bi bi-search" style={{ fontSize: "3rem" }}></i>
               <p className="mt-3">No orders match your search.</p>
             </div>
           ) : (
@@ -127,7 +125,7 @@ const AdminOrders = () => {
                   </div>
                   <div className="col-md-3 mb-2">
                     <small className="text-muted">
-                      <i className="bi bi-hash"></i> Order ID
+                       Order ID
                     </small>
                     <p className="mb-0" style={{ fontSize: "0.9rem" }}>
                       {order._id?.slice(-8)}

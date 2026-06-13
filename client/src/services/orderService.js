@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuthConfig } from "../utils/authConfig";
 
 const API_URL =
-  "http://localhost:5000/api/orders";
+  "https://shopez-backend-7mm7.onrender.com/api/orders";
 
 export const getUserOrders = async (
   userId

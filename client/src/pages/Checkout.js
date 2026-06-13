@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { getAuthConfig } from "../utils/authConfig";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -31,11 +32,12 @@ const Checkout = () => {
       );
 
       await axios.post(
-        "http://localhost:5000/api/orders",
+        "https://shopez-backend-7mm7.onrender.com/api/orders",
         {
           userId: userInfo._id,
           ...formData,
-        }
+        },
+        getAuthConfig()
       );
 
       toast.success("Order Placed Successfully");

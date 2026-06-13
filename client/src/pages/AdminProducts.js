@@ -40,7 +40,6 @@ const AdminProducts = () => {
 
       {products.length === 0 ? (
         <div className="empty-state">
-          <i className="bi bi-inbox" style={{ fontSize: "3rem" }}></i>
           <p className="mt-3">No products found.</p>
         </div>
       ) : (
@@ -61,7 +60,6 @@ const AdminProducts = () => {
 
           {filteredProducts.length === 0 ? (
             <div className="empty-state">
-              <i className="bi bi-search" style={{ fontSize: "3rem" }}></i>
               <p className="mt-3">No products match your search.</p>
             </div>
           ) : (
@@ -97,7 +95,6 @@ const AdminProducts = () => {
                             className="btn btn-outline-danger btn-sm"
                             onClick={() => handleDelete(product._id)}
                           >
-                            <i className="bi bi-trash me-1"></i>
                             Delete
                           </button>
                         </td>

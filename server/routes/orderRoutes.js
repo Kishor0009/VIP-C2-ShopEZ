@@ -15,9 +15,9 @@ const {
 );
 const router = express.Router();
 
-router.post("/", protect, admin, createOrder);
+router.post("/", protect, createOrder);
 router.get("/", protect, admin, getOrders);
-router.get("/user/:userId", protect, admin, getUserOrders);
+router.get("/user/:userId", protect, getUserOrders);
 router.put("/:id", protect, admin, updateOrderStatus);
 
 module.exports = router;

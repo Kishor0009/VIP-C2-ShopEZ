@@ -26,7 +26,7 @@ const AddProduct = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/products",
+        "https://shopez-backend-7mm7.onrender.com/api/products",
         formData,
         getAuthConfig()
       );
@@ -41,7 +41,6 @@ const AddProduct = () => {
     <div className="container mt-4 mb-5" style={{ maxWidth: "700px" }}>
       <div className="card form-card p-4 p-md-5">
         <h2 className="mb-4" style={{ fontWeight: "700" }}>
-          <i className="bi bi-plus-circle me-2" style={{ color: "#4361ee" }}></i>
           Add Product
         </h2>
 
@@ -129,7 +128,6 @@ const AddProduct = () => {
           </div>
 
           <button className="btn btn-success w-100 py-2 mt-2" style={{ fontWeight: "600" }}>
-            <i className="bi bi-check-lg me-2"></i>
             Add Product
           </button>
         </form>

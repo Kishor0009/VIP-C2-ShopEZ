@@ -12,9 +12,9 @@ const AdminDashboard = () => {
       try {
         const config = getAuthConfig();
         const [prodRes, orderRes, userRes] = await Promise.all([
-          axios.get("http://localhost:5000/api/products", config),
-          axios.get("http://localhost:5000/api/orders", config),
-          axios.get("http://localhost:5000/api/auth/users", config),
+          axios.get("https://shopez-backend-7mm7.onrender.com/api/products", config),
+          axios.get("https://shopez-backend-7mm7.onrender.com/api/orders", config),
+          axios.get("https://shopez-backend-7mm7.onrender.com/api/auth/users", config),
         ]);
         setCounts({
           products: prodRes.data.length,

@@ -16,19 +16,10 @@ const NavbarComponent = ({ searchTerm, setSearchTerm }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark navbar-custom" style={{ backgroundColor: "#2b2d42" }}>
       <div className="container">
-        <Link className="navbar-brand d-flex align-items-center" to="/">
+        <Link className="navbar-brand d-flex flex-column align-items-start" to="/" style={{ lineHeight: "1.1" }}>
           <span style={{ fontWeight: "700", fontSize: "1.4rem" }}>ShopEZ</span>
+          <span style={{ fontSize: "0.75rem", opacity: 0.8, fontWeight: "500", textTransform: "uppercase" }}>Hardware Hub</span>
         </Link>
-
-       <form className="d-flex me-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search products..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-       </form>
 
         <button
           className="navbar-toggler"
@@ -40,6 +31,16 @@ const NavbarComponent = ({ searchTerm, setSearchTerm }) => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarContent">
+          <form className="d-flex mx-auto my-2 my-lg-0" style={{ width: "100%", maxWidth: "350px" }}>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </form>
+
           <ul className="navbar-nav ms-auto align-items-lg-center">
             {userInfo ? (
               <>

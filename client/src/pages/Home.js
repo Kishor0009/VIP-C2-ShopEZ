@@ -35,16 +35,33 @@ const Home = ({ searchTerm }) => {
 
   return (
     <div className="container mt-4">
-      <div className="hero-section text-white text-center mb-5">
-        <h1 style={{ fontWeight: "700", fontSize: "2.5rem" }}>
-          Welcome to ShopEZ
-        </h1>
-        <p className="mt-3" style={{ fontSize: "1.1rem", opacity: 0.9 }}>
-          Shop Smarter, Faster and Easier
-        </p>
-        <button className="btn btn-warning btn-lg mt-3 px-4" onClick={scrollToProducts}>
-          Shop Now
-        </button>
+      <div className="hero-section text-white mb-5" style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", borderRadius: "16px", padding: "60px 30px" }}>
+        <div className="row align-items-center">
+          <div className="col-md-7 text-md-start text-center mb-4 mb-md-0">
+            <h1 style={{ fontWeight: "800", fontSize: "2.8rem", color: "#ff9f1c" }}>
+              ShopEZ Hardware Hub
+            </h1>
+            <h2 className="h4 text-light mb-3" style={{ fontWeight: "500" }}>
+              Built for Durability, Engineered for Performance
+            </h2>
+            <p style={{ fontSize: "1.1rem", opacity: 0.9 }}>
+              Equip your workshop with top-quality power tools, reliable hand tools, safety gear, and DIY project essentials. Find everything you need to build, fix, and create.
+            </p>
+            <div className="mt-4 d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+              <button className="btn btn-outline-light btn-lg px-4" onClick={scrollToProducts}>
+                Browse Products
+              </button>
+            </div>
+          </div>
+          <div className="col-md-5 text-center">
+            <img 
+              src="/hero_tools.png" 
+              alt="Tools and Hardware" 
+              className="img-fluid" 
+              style={{ maxHeight: "280px", borderRadius: "8px" }} 
+            />
+          </div>
+        </div>
       </div>
 
       <div id="products-section">

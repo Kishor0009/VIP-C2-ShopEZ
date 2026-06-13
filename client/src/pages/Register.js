@@ -22,7 +22,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://shopez-backend-7mm7.onrender.com/api/auth/register",
         formData
       );
 

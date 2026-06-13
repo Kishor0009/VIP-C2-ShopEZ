@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAuthConfig }from "../utils/authConfig";
 
-const API_URL = "http://localhost:5000/api/products";
+const API_URL = "https://shopez-backend-7mm7.onrender.com/api/products";
 
 const getConfig = () => {
   const userInfo = JSON.parse(

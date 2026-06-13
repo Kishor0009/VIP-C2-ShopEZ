@@ -9,7 +9,7 @@ const AdminUsers = () => {
 
   const fetchUsers = async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/auth/users",
+      "https://shopez-backend-7mm7.onrender.com/api/auth/users",
       getAuthConfig()
     );
 
@@ -22,7 +22,7 @@ const AdminUsers = () => {
 
   const deleteUser = async (id) => {
     await axios.delete(
-      `http://localhost:5000/api/auth/users/${id}`,
+      `https://shopez-backend-7mm7.onrender.com/api/auth/users/${id}`,
       getAuthConfig()
     );
 

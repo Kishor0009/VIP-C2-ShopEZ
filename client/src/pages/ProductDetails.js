@@ -10,11 +10,17 @@ const ProductDetails = () => {
 
   const [product, setProduct] = useState(null);
 
+  const discountedPrice = product
+    ? (product.discount > 0
+      ? Math.round(product.price - (product.price * product.discount) / 100)
+      : product.price)
+    : 0;
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/products/${id}`,
+          `https://shopez-backend-7mm7.onrender.com/api/products/${id}`,
           getAuthConfig()
         );
 
@@ -47,7 +53,7 @@ const ProductDetails = () => {
         mainImg: product.mainImg,
         quantity: 1,
         size: "",
-        price: product.price,
+        price: discountedPrice,
         discount: product.discount,
       });
 
@@ -73,12 +79,12 @@ const ProductDetails = () => {
     <div className="container mt-5 mb-5">
       <div className="row g-4">
         <div className="col-md-6">
-          <div className="card form-card overflow-hidden">
+          <div className="card form-card overflow-hidden d-flex align-items-center justify-content-center" style={{ height: "450px", backgroundColor: "#ffffff" }}>
             <img
               src={product.mainImg}
               alt={product.title}
               className="img-fluid"
-              style={{ width: "100%", maxHeight: "450px", objectFit: "cover" }}
+              style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain", padding: "20px" }}
             />
           </div>
         </div>
@@ -86,15 +92,22 @@ const ProductDetails = () => {
         <div className="col-md-6">
           <h2 style={{ fontWeight: "700" }}>{product.title}</h2>
 
-          <span className="badge bg-light text-secondary mb-3" style={{ fontSize: "0.85rem" }}>
-            {product.category}
-          </span>
-
-          <div className="price-tag mb-3">
-            ₹{product.price}
-            {product.discount > 0 && (
-              <span className="badge bg-danger ms-2" style={{ fontSize: "0.8rem" }}>
-                {product.discount}% OFF
+          <div className="d-flex align-items-baseline gap-2 mb-3">
+            {product.discount > 0 ? (
+              <>
+                <span className="text-muted text-decoration-line-through" style={{ fontSize: "1.1rem" }}>
+                  ₹{product.price.toLocaleString("en-IN")}
+                </span>
+                <span className="price-tag" style={{ fontSize: "1.8rem" }}>
+                  ₹{discountedPrice.toLocaleString("en-IN")}
+                </span>
+                <span className="badge bg-danger align-self-center" style={{ fontSize: "0.85rem" }}>
+                  {product.discount}% OFF
+                </span>
+              </>
+            ) : (
+              <span className="price-tag" style={{ fontSize: "1.8rem" }}>
+                ₹{product.price.toLocaleString("en-IN")}
               </span>
             )}
           </div>
@@ -104,12 +117,7 @@ const ProductDetails = () => {
           <hr />
 
           <div className="row g-2 mb-4" style={{ fontSize: "0.95rem" }}>
-            <div className="col-sm-6">
-              <div>
-                <span className="text-muted me-2">Product ID:</span>
-                <span className="fw-semibold text-dark">{product._id}</span>
-              </div>
-            </div>
+
             <div className="col-sm-6">
               <div>
                 <span className="text-muted me-2">Category:</span>
@@ -121,7 +129,6 @@ const ProductDetails = () => {
                 <span className="text-muted me-2">Stock Status:</span>
                 {product.stock > 0 ? (
                   <span className="stock-in fw-semibold">
-                    <i className="bi bi-check-circle me-1"></i>
                     In Stock ({product.stock})
                   </span>
                 ) : (
@@ -147,7 +154,6 @@ const ProductDetails = () => {
             onClick={handleAddToCart}
             disabled={product.stock === 0}
           >
-            <i className="bi bi-cart-plus me-2"></i>
             Add To Cart
           </button>
         </div>
