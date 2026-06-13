@@ -161,13 +161,7 @@ code {
 .stock-out {
   color: var(--danger);
 }
-.product-card {
-  transition: 0.3s;
-}
 
-.product-card:hover {
-  transform: translateY(-5px);
-}
 
 .card-img-top {
   height: 250px;
@@ -221,38 +215,4 @@ code {
 .profile-dropdown-item:hover {
   background-color: #f1f3f5;
   color: #212529;
-}
-
-@media (max-width: 991.98px) {
-  .profile-dropdown {
-    position: static;
-    float: none;
-    box-shadow: none;
-    border: none;
-    background-color: transparent;
-    padding: 10px 0 0 10px;
-    min-width: unset;
-  }
-
-  .profile-dropdown-info {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  .profile-dropdown-name {
-    color: #ffffff;
-  }
-
-  .profile-dropdown-email {
-    color: rgba(255, 255, 255, 0.6);
-  }
-
-  .profile-dropdown-item {
-    color: rgba(255, 255, 255, 0.8) !important;
-    padding-left: 0;
-  }
-
-  .profile-dropdown-item:hover {
-    background-color: transparent;
-    color: #ffffff !important;
-  }
 }

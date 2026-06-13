@@ -7,7 +7,7 @@ const FooterComponent = () => {
       <div className="container">
         <div className="row g-4">
           {/* Brand & Tagline */}
-          <div className="col-md-4 text-center text-md-start">
+          <div className="col-md-4">
             <h5
               style={{fontWeight: "800",color: "#ff9f1c",}}
               >
@@ -44,7 +44,7 @@ const FooterComponent = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="col-md-4 text-center text-md-end">
+          <div className="col-md-4 text-end">
             <h5 style={{ fontWeight: "600", color: "#ffffff" }}>Contact Us</h5>
             <p className="mb-1 text-light" style={{ fontSize: "0.9rem", opacity: 0.85 }}>
               Email: support@shopez.com

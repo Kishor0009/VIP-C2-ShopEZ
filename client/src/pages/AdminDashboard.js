@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { getAuthConfig } from "../utils/authConfig";
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo || userInfo.role !== "admin") {
+      toast.error("Access denied. Admin role required.");
+      navigate("/login");
+    }
+  }, [navigate]);
   const [counts, setCounts] = useState({ products: null, orders: null, users: null });
   const [loading, setLoading] = useState(true);
 
@@ -38,7 +48,7 @@ const AdminDashboard = () => {
       </h2>
 
       <div className="row g-4 mt-2">
-        <div className="col-md-4">
+        <div className="col-4">
           <Link to="/admin/products" style={{ textDecoration: "none" }}>
             <div className="admin-card card p-4 text-center" style={{ borderTopColor: "#4361ee" }}>
               <h5 className="mt-3" style={{ fontWeight: "600", color: "#333" }}>Products</h5>
@@ -54,7 +64,7 @@ const AdminDashboard = () => {
           </Link>
         </div>
 
-        <div className="col-md-4">
+        <div className="col-4">
           <Link to="/admin/orders" style={{ textDecoration: "none" }}>
             <div className="admin-card card p-4 text-center" style={{ borderTopColor: "#198754" }}>
               <h5 className="mt-3" style={{ fontWeight: "600", color: "#333" }}>Orders</h5>
@@ -70,7 +80,7 @@ const AdminDashboard = () => {
           </Link>
         </div>
 
-        <div className="col-md-4">
+        <div className="col-4">
           <Link to="/admin/users" style={{ textDecoration: "none" }}>
             <div className="admin-card card p-4 text-center" style={{ borderTopColor: "#ff9f1c" }}>
               <h5 className="mt-3" style={{ fontWeight: "600", color: "#333" }}>Users</h5>

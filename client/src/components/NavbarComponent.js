@@ -37,17 +37,9 @@ const NavbarComponent = ({ searchTerm, setSearchTerm }) => {
           <span style={{ fontSize: "0.75rem", opacity: 0.8, fontWeight: "500", textTransform: "uppercase",marginLeft: "49px", }}>Hardware Hub</span>
         </Link>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarContent"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
 
-        <div className="collapse navbar-collapse" id="navbarContent">
-          <form className="d-flex mx-auto my-2 my-lg-0" style={{ width: "100%", maxWidth: "350px" }}>
+        <div className="d-flex align-items-center flex-grow-1" id="navbarContent">
+          <form className="d-flex mx-auto" style={{ width: "100%", maxWidth: "350px" }}>
             <input
               type="text"
               className="form-control"
@@ -57,26 +49,26 @@ const NavbarComponent = ({ searchTerm, setSearchTerm }) => {
             />
           </form>
 
-          <ul className="navbar-nav ms-auto align-items-lg-center">
+          <ul className="navbar-nav ms-auto align-items-center flex-row gap-3">
             {userInfo ? (
               <>
                 {userInfo.role === "admin" && (
-                  <li className="nav-item me-lg-2 mb-2 mb-lg-0">
+                  <li className="nav-item me-2">
                     <Link to="/admin" className="btn btn-outline-light btn-sm">
                       Admin
                     </Link>
                   </li>
                 )}
 
-                <li className="nav-item me-lg-2 mb-2 mb-lg-0">
+                <li className="nav-item me-2">
                   <Link to="/cart" className="btn btn-warning btn-sm">
                     Cart
                   </Link>
                 </li>
 
-                <li className="nav-item me-lg-2 mb-2 mb-lg-0 position-relative" ref={dropdownRef}>
+                <li className="nav-item me-2 position-relative" ref={dropdownRef}>
                   <button
-                    className="btn btn-outline-light btn-sm d-flex align-items-center gap-1 w-100 w-lg-auto justify-content-between justify-content-lg-start"
+                    className="btn btn-outline-light btn-sm d-flex align-items-center gap-1"
                     onClick={() => setDropdownOpen(!dropdownOpen)}
                     style={{ fontWeight: "500" }}
                   >
@@ -133,13 +125,13 @@ const NavbarComponent = ({ searchTerm, setSearchTerm }) => {
               </>
             ) : (
               <>
-                <li className="nav-item me-lg-2 mb-2 mb-lg-0">
+                <li className="nav-item me-2">
                   <Link className="btn btn-outline-light btn-sm" to="/login">
                     Login
                   </Link>
                 </li>
 
-                <li className="nav-item mb-2 mb-lg-0">
+                <li className="nav-item">
                   <Link className="btn btn-warning btn-sm" to="/register">
                     Register
                   </Link>

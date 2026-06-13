@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { getProducts, deleteProduct } from "../services/productService";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const AdminProducts = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo || userInfo.role !== "admin") {
+      toast.error("Access denied. Admin role required.");
+      navigate("/login");
+    }
+  }, [navigate]);
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -45,7 +54,7 @@ const AdminProducts = () => {
       ) : (
         <>
           <div className="row mb-3">
-            <div className="col-md-6 col-lg-4">
+            <div className="col-4">
               <div className="input-group">
                 <input
                   type="text"

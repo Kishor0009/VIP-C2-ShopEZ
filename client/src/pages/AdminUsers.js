@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { getAuthConfig } from "../utils/authConfig";
 
 const AdminUsers = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo || userInfo.role !== "admin") {
+      toast.error("Access denied. Admin role required.");
+      navigate("/login");
+    }
+  }, [navigate]);
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -49,7 +59,7 @@ const AdminUsers = () => {
       ) : (
         <>
           <div className="row mb-3">
-            <div className="col-md-6 col-lg-4">
+            <div className="col-4">
               <div className="input-group">
                 <input
                   type="text"

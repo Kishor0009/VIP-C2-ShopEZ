@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { getAuthConfig } from "../utils/authConfig";
 
 const AddProduct = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo || userInfo.role !== "admin") {
+      toast.error("Access denied. Admin role required.");
+      navigate("/login");
+    }
+  }, [navigate]);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -39,7 +49,7 @@ const AddProduct = () => {
 
   return (
     <div className="container mt-4 mb-5" style={{ maxWidth: "700px" }}>
-      <div className="card form-card p-4 p-md-5">
+      <div className="card form-card p-5">
         <h2 className="mb-4" style={{ fontWeight: "700" }}>
           Add Product
         </h2>
@@ -91,7 +101,7 @@ const AddProduct = () => {
           </div>
 
           <div className="row">
-            <div className="col-md-4 mb-3">
+            <div className="col-4 mb-3">
               <label className="form-label fw-semibold">Price (₹)</label>
               <input
                 className="form-control"
@@ -103,7 +113,7 @@ const AddProduct = () => {
               />
             </div>
 
-            <div className="col-md-4 mb-3">
+            <div className="col-4 mb-3">
               <label className="form-label fw-semibold">Stock</label>
               <input
                 className="form-control"
@@ -115,7 +125,7 @@ const AddProduct = () => {
               />
             </div>
 
-            <div className="col-md-4 mb-3">
+            <div className="col-4 mb-3">
               <label className="form-label fw-semibold">Discount (%)</label>
               <input
                 className="form-control"

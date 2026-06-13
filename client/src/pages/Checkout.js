@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "bold"; // wait, axios is imported from "axios", not "bold"
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { getAuthConfig } from "../utils/authConfig";
 
 const Checkout = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo) {
+      toast.error("Please login to proceed to checkout.");
+      navigate("/login");
+    }
+  }, [navigate]);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -54,7 +64,7 @@ const Checkout = () => {
 
   return (
     <div className="container mt-5 mb-5" style={{ maxWidth: "650px" }}>
-      <div className="card form-card p-4 p-md-5">
+      <div className="card form-card p-5">
         <h2 className="mb-4" style={{ fontWeight: "700" }}>
           Checkout
         </h2>

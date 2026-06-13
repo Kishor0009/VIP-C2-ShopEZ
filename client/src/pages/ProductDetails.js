@@ -76,7 +76,7 @@ const ProductDetails = () => {
   return (
     <div className="container mt-5 mb-5">
       <div className="row g-4">
-        <div className="col-md-6">
+        <div className="col-6">
           <div className="card form-card overflow-hidden d-flex align-items-center justify-content-center" style={{ height: "450px", backgroundColor: "#ffffff" }}>
             <img
               src={product.mainImg}
@@ -87,7 +87,7 @@ const ProductDetails = () => {
           </div>
         </div>
 
-        <div className="col-md-6">
+        <div className="col-6">
           <h2 style={{ fontWeight: "700" }}>{product.title}</h2>
 
           <div className="d-flex align-items-baseline gap-2 mb-3">
@@ -116,13 +116,13 @@ const ProductDetails = () => {
 
           <div className="row g-2 mb-4" style={{ fontSize: "0.95rem" }}>
 
-            <div className="col-sm-6">
+            <div className="col-6">
               <div>
                 <span className="text-muted me-2">Category:</span>
                 <span className="badge bg-light text-secondary">{product.category}</span>
               </div>
             </div>
-            <div className="col-sm-6 mt-2">
+            <div className="col-6 mt-2">
               <div>
                 <span className="text-muted me-2">Stock Status:</span>
                 {product.stock > 0 ? (
@@ -137,7 +137,7 @@ const ProductDetails = () => {
                 )}
               </div>
             </div>
-            <div className="col-sm-6 mt-2">
+            <div className="col-6 mt-2">
               <div>
                 <span className="text-muted me-2">Discount:</span>
                 <span className="fw-semibold text-danger">

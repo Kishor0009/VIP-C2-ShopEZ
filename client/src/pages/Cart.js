@@ -47,13 +47,13 @@ const Cart = () => {
         </div>
       ) : (
         <div className="row g-4">
-          <div className="col-lg-8">
+          <div className="col-8">
             {items.map((item) => {
               const subtotal = item.price * item.quantity;
               return (
                 <div key={item._id} className="card form-card p-3 mb-3">
                   <div className="row align-items-center">
-                    <div className="col-md-2 col-3">
+                    <div className="col-2">
                       <img
                         src={item.mainImg}
                         alt={item.title}
@@ -62,26 +62,26 @@ const Cart = () => {
                       />
                     </div>
 
-                    <div className="col-md-4 col-9">
+                    <div className="col-4">
                       <h6 className="mb-1" style={{ fontWeight: "600" }}>{item.title}</h6>
                       <span className="text-muted" style={{ fontSize: "0.9rem" }}>
                         ₹{item.price}
                       </span>
                     </div>
 
-                    <div className="col-md-2 col-4 mt-2 mt-md-0">
+                    <div className="col-2">
                       <span className="badge bg-light text-dark px-3 py-2">
                         Qty: {item.quantity}
                       </span>
                     </div>
 
-                    <div className="col-md-2 col-4 mt-2 mt-md-0 text-center">
+                    <div className="col-2 text-center">
                       <span style={{ fontWeight: "600", color: "#4361ee" }}>
                         ₹{subtotal}
                       </span>
                     </div>
 
-                    <div className="col-md-2 col-4 mt-2 mt-md-0 text-end">
+                    <div className="col-2 text-end">
                       <button
                         className="btn btn-outline-danger btn-sm"
                         onClick={() => deleteItem(item._id)}
@@ -95,7 +95,7 @@ const Cart = () => {
             })}
           </div>
 
-          <div className="col-lg-4">
+          <div className="col-4">
             <div className="card form-card p-4">
               <h5 style={{ fontWeight: "600" }}>
                 Cart Summary

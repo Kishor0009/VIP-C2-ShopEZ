@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const getStatusClass = (status) => {
   switch (status?.toLowerCase()) {
@@ -11,8 +12,17 @@ const getStatusClass = (status) => {
 };
 
 const AdminOrders = () => {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo || userInfo.role !== "admin") {
+      toast.error("Access denied. Admin role required.");
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const fetchOrders = async () => {
     const userInfo = JSON.parse(
@@ -80,7 +90,7 @@ const AdminOrders = () => {
       ) : (
         <>
           <div className="row mb-3">
-            <div className="col-md-6 col-lg-4">
+            <div className="col-4">
               <div className="input-group">
                 <input
                   type="text"
@@ -99,7 +109,7 @@ const AdminOrders = () => {
             </div>
           ) : (
             filteredOrders.map((order) => (
-              <div key={order._id} className="card form-card p-3 p-md-4 mb-3">
+              <div key={order._id} className="card form-card p-4 mb-3">
                 <div className="d-flex flex-wrap justify-content-between align-items-start mb-3">
                   <div>
                     <h6 className="mb-1" style={{ fontWeight: "600" }}>
@@ -113,13 +123,13 @@ const AdminOrders = () => {
                 </div>
 
                 <div className="row mb-3">
-                  <div className="col-md-6 mb-2">
+                  <div className="col-6 mb-2">
                     <small className="text-muted">
                       Address
                     </small>
                     <p className="mb-0" style={{ fontSize: "0.9rem" }}>{order.address}</p>
                   </div>
-                  <div className="col-md-3 mb-2">
+                  <div className="col-3 mb-2">
                     <small className="text-muted">
                       Payment
                     </small>
@@ -127,7 +137,7 @@ const AdminOrders = () => {
                       {order.paymentMethod}
                     </p>
                   </div>
-                  <div className="col-md-3 mb-2">
+                  <div className="col-3 mb-2">
                     <small className="text-muted">
                        Order ID
                     </small>

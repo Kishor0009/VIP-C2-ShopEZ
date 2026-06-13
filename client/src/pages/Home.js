@@ -115,7 +115,7 @@ const Home = ({ searchTerm }) => {
     <div className="container mt-4">
       <div className="hero-section text-white mb-5" style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)", borderRadius: "16px", padding: "60px 30px" }}>
         <div className="row align-items-center">
-          <div className="col-md-7 text-md-start text-center mb-4 mb-md-0">
+          <div className="col-7">
             <h1
               style={{fontWeight: "800",fontSize: "2.8rem",color: "#ff9f1c",}}
               >
@@ -132,13 +132,13 @@ const Home = ({ searchTerm }) => {
             <p style={{ fontSize: "1.1rem", opacity: 0.9 }}>
               Equip your workshop with top-quality power tools, reliable hand tools, safety gear, and DIY project essentials. Find everything you need to build, fix, and create.
             </p>
-            <div className="mt-4 d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+            <div className="mt-4 d-flex gap-2">
               <button className="btn btn-outline-light btn-lg px-4" onClick={scrollToProducts}>
                 Browse Products
               </button>
             </div>
           </div>
-          <div className="col-md-5 text-center">
+          <div className="col-5 text-center">
             <img 
               src="/hero_tools.png" 
               alt="Tools and Hardware" 
@@ -161,7 +161,7 @@ const Home = ({ searchTerm }) => {
         ) : (
           <div className="row g-4">
             {/* Left Column: Filter Sidebar */}
-            <div className="col-lg-3 col-md-4">
+            <div className="col-3">
               <div 
                 className="card p-3 mb-4" 
                 style={{ 
@@ -371,7 +371,7 @@ const Home = ({ searchTerm }) => {
             </div>
 
             {/* Right Column: Products Grid */}
-            <div className="col-lg-9 col-md-8">
+            <div className="col-9">
               {processedProducts.length === 0 ? (
                 <div className="empty-state bg-white border rounded p-5">
                   <p className="mt-3 mb-0 text-muted fw-semibold">No products match your filters.</p>
@@ -380,7 +380,7 @@ const Home = ({ searchTerm }) => {
               ) : (
                 <div className="row g-4">
                   {processedProducts.map((product) => (
-                    <div key={product._id} className="col-lg-4 col-md-6 col-sm-6">
+                    <div key={product._id} className="col-4">
                       <ProductCard product={product} />
                     </div>
                   ))}

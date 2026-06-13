@@ -18,7 +18,16 @@ const ProductCard = ({ product }) => {
         />  
 
         <div className="card-body d-flex flex-column flex-grow-1">
-          <h6 className="card-title" style={{ fontWeight: "600", minHeight: "3rem" }}>
+          <h6 className="card-title" style={{
+            fontWeight: "600",
+            height: "2.7rem",
+            overflow: "hidden",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+            textOverflow: "ellipsis",
+            marginBottom: "0.5rem"
+          }}>
             {product.title}
           </h6>
 
