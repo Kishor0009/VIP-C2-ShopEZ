@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getUserOrders } from "../services/orderService";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const getStatusClass = (status) => {
   switch (status?.toLowerCase()) {
@@ -18,6 +20,7 @@ const getStatusBorder = (status) => {
 };
 
 const MyOrders = () => {
+  const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -26,14 +29,18 @@ const MyOrders = () => {
         localStorage.getItem("userInfo")
       );
 
-      if (!userInfo) return;
+      if (!userInfo) {
+        toast.error("Please login to view your orders.");
+        navigate("/login");
+        return;
+      }
 
       const data = await getUserOrders(userInfo._id);
       setOrders(data);
     };
 
     fetchOrders();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="container mt-4 mb-5">
@@ -49,7 +56,7 @@ const MyOrders = () => {
         orders.map((order) => (
           <div
             key={order._id}
-            className="card form-card p-3 p-md-4 mb-3"
+            className="card form-card p-4 mb-3"
             style={{ borderLeft: getStatusBorder(order.status) }}
           >
             <div className="d-flex flex-wrap justify-content-between align-items-start mb-2">
@@ -62,7 +69,7 @@ const MyOrders = () => {
             </div>
 
             <div className="row mt-2">
-              <div className="col-md-4 mb-2">
+              <div className="col-4 mb-2">
                 <small className="text-muted">
                    Order Date
                 </small>
@@ -75,7 +82,7 @@ const MyOrders = () => {
                 </p>
               </div>
 
-              <div className="col-md-4 mb-2">
+              <div className="col-4 mb-2">
                 <small className="text-muted">
                   Payment
                 </small>
@@ -84,7 +91,7 @@ const MyOrders = () => {
                 </p>
               </div>
 
-              <div className="col-md-4 mb-2">
+              <div className="col-4 mb-2">
                 <small className="text-muted">
                  Address
                 </small>

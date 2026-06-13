@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "bold"; // wait, axios is imported from "axios", not "bold"
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +14,6 @@ const Checkout = () => {
       navigate("/login");
     }
   }, [navigate]);
-  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",

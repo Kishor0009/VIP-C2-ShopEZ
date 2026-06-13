@@ -7,7 +7,7 @@ const FooterComponent = () => {
       <div className="container">
         <div className="row g-4">
           {/* Brand & Tagline */}
-          <div className="col-md-4">
+          <div className="col-4">
             <h5
               style={{fontWeight: "800",color: "#ff9f1c",}}
               >
@@ -25,7 +25,7 @@ const FooterComponent = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="col-md-4 text-center">
+          <div className="col-4 text-center">
             <h5 style={{ fontWeight: "600", color: "#ffffff" }}>Quick Links</h5>
             <ul className="list-unstyled mb-0 d-flex flex-column gap-1 align-items-center" style={{ fontSize: "0.9rem" }}>
               <li>
@@ -44,7 +44,7 @@ const FooterComponent = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="col-md-4 text-end">
+          <div className="col-4 text-end">
             <h5 style={{ fontWeight: "600", color: "#ffffff" }}>Contact Us</h5>
             <p className="mb-1 text-light" style={{ fontSize: "0.9rem", opacity: 0.85 }}>
               Email: support@shopez.com

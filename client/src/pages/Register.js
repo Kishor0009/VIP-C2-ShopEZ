@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,13 +22,13 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://shopez-backend-7mm7.onrender.com/api/auth/register",
         formData
       );
 
-      toast.success("Registration Successful");
-      console.log(response.data);
+      toast.success("Registration Successful. Please Login.");
+      navigate("/login");
     } catch (error) {
       toast.error(
         error.response?.data?.message || "Error"
@@ -37,7 +38,7 @@ const Register = () => {
 
   return (
     <div className="container mt-5 mb-5" style={{ maxWidth: "450px" }}>
-      <div className="card form-card p-4 p-md-5">
+      <div className="card form-card p-5">
         <div className="text-center mb-4">
           <i className="bi bi-person-plus-fill" style={{ fontSize: "2.5rem", color: "#4361ee" }}></i>
           <h2 className="mt-2" style={{ fontWeight: "700" }}>Register</h2>
