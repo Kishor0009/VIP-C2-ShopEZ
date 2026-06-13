@@ -20,8 +20,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `https://shopez-backend-7mm7.onrender.com/api/products/${id}`,
-          getAuthConfig()
+          `https://shopez-backend-7mm7.onrender.com/api/products/${id}`
         );
 
         setProduct(response.data);

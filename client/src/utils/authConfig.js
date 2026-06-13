@@ -6,7 +6,7 @@ export const getAuthConfig = () => {
 
   return {
     headers: {
-      Authorization: `Bearer ${userInfo.token}`,
+      Authorization: userInfo ? `Bearer ${userInfo.token}` : "",
     },
   };
 };

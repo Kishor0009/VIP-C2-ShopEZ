@@ -26,6 +26,8 @@ const MyOrders = () => {
         localStorage.getItem("userInfo")
       );
 
+      if (!userInfo) return;
+
       const data = await getUserOrders(userInfo._id);
       setOrders(data);
     };
