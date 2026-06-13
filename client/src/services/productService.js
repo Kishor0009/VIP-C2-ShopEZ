@@ -16,11 +16,7 @@ const getConfig = () => {
 };
 
 export const getProducts = async () => {
-  const response = await axios.get(
-    API_URL,
-    getConfig()
-  );
-
+  const response = await axios.get(API_URL);
   return response.data;
 };
 
